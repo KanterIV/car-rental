@@ -14,7 +14,7 @@ export const getAllRentalCars = createAsyncThunk(
 );
 
 const INITIAL_STATE = {
-  carsArray: null,
+  carsArray: [],
   isLoading: false,
   error: null,
 };
@@ -26,12 +26,9 @@ const carsSlice = createSlice({
   extraReducers: (builder) =>
     builder
 
-      // ------------ Login User ----------------------
       .addCase(getAllRentalCars.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.isSignedIn = true;
+        state.carsArray = action.payload;
       })
 
       .addMatcher(isAnyOf(getAllRentalCars.pending), (state) => {

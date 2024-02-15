@@ -13,7 +13,7 @@ import storage from "redux-persist/lib/storage";
 
 import { carsReducer } from "../redux/cars/carsReducer";
 
-const authConfig = {
+const carsConfig = {
   key: "cars",
   storage,
   whitelist: ["carsArray"],
@@ -21,7 +21,7 @@ const authConfig = {
 
 export const store = configureStore({
   reducer: {
-    cars: persistReducer(authConfig, carsReducer),
+    cars: persistReducer(carsConfig, carsReducer),
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
