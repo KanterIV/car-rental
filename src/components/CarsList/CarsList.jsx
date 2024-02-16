@@ -5,7 +5,6 @@ import { StyledCarsList } from "./CarsList.styled";
 
 const CarsList = () => {
   const carsArray = useSelector(selectCars);
-  console.log(carsArray);
 
   return (
     <StyledCarsList>

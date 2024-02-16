@@ -17,4 +17,8 @@ export const StyledLoadMore = styled.button`
   &:focus {
     color: #0b44cd;
   }
+
+  &.hidden {
+    display: none;
+  }
 `;

@@ -1,14 +1,22 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { ROUTE_PATH } from "./constants/routes";
 import Loader from "./components/Loader/Loader";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
+import { getTotalCars } from "./redux/cars/carsReducer";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const Main = lazy(() => import("./pages/Main/Main"));
 const Favorite = lazy(() => import("./pages/Favorite/Favorite"));
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTotalCars());
+  }, [dispatch]);
+
   return (
     <Suspense fallback={<Loader />}>
       <Routes>

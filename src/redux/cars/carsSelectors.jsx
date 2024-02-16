@@ -1,2 +1,2 @@
 export const selectCars = (state) => state.cars.carsArray;
-export const selectPage = (state) => state.cars.pagination.page;
+export const selectTotalCars = (state) => state.cars.carsTotal;

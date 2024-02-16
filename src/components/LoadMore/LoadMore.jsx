@@ -1,24 +1,31 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { StyledLoadMore } from "./LoadMore.styled";
-import { getMoreRentalCars, setPage } from "../../redux/cars/carsReducer";
-import { selectPage } from "../../redux/cars/carsSelectors";
+import { getMoreRentalCars } from "../../redux/cars/carsReducer";
+import { selectTotalCars } from "../../redux/cars/carsSelectors";
 
 const LoadMoreBtn = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalCars = useSelector(selectTotalCars);
+  const pageLimit = Math.ceil(totalCars / 12);
   const dispatch = useDispatch();
-  const page = useSelector(selectPage);
+
+  const changePageHelper = () => {
+    setCurrentPage((prevState) => (prevState += 1));
+  };
 
   useEffect(() => {
-    if (page === 1) {
+    if (currentPage === 1) {
       return;
     }
-    dispatch(getMoreRentalCars(page));
-  }, [dispatch, page]);
+    dispatch(getMoreRentalCars(currentPage));
+  }, [dispatch, currentPage]);
 
   return (
     <StyledLoadMore
+      className={currentPage >= pageLimit && "hidden"}
       onClick={() => {
-        dispatch(setPage());
+        changePageHelper();
       }}
     >
       Load more

@@ -1,5 +1,22 @@
 import { createAsyncThunk, createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { requestCars, requestMoreCars } from "../../services/api/api";
+import {
+  requestAllCars,
+  requestCars,
+  requestMoreCars,
+} from "../../services/api/api";
+
+export const getTotalCars = createAsyncThunk(
+  "cars/getTotal",
+  async (_, thunkApi) => {
+    try {
+      const carsArray = await requestAllCars();
+      const total = carsArray.length;
+      return total;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
 
 export const getRentalCars = createAsyncThunk(
   "cars/getCars",
@@ -27,10 +44,7 @@ export const getMoreRentalCars = createAsyncThunk(
 
 const INITIAL_STATE = {
   carsArray: [],
-  pagination: {
-    page: 1,
-    limit: 12,
-  },
+  carsTotal: null,
   isLoading: false,
   error: null,
 };
@@ -47,6 +61,11 @@ const carsSlice = createSlice({
 
   extraReducers: (builder) =>
     builder
+      .addCase(getTotalCars.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.carsTotal = action.payload;
+      })
+
       .addCase(getRentalCars.fulfilled, (state, action) => {
         state.isLoading = false;
         state.carsArray = action.payload;
@@ -58,14 +77,22 @@ const carsSlice = createSlice({
       })
 
       .addMatcher(
-        isAnyOf(getRentalCars.pending, getMoreRentalCars.pending),
+        isAnyOf(
+          getTotalCars.pending,
+          getRentalCars.pending,
+          getMoreRentalCars.pending
+        ),
         (state) => {
           state.isLoading = true;
           state.error = null;
         }
       )
       .addMatcher(
-        isAnyOf(getRentalCars.rejected, getMoreRentalCars.rejected),
+        isAnyOf(
+          getTotalCars.rejected,
+          getRentalCars.rejected,
+          getMoreRentalCars.rejected
+        ),
         (state) => {
           state.isLoading = false;
           state.error = null;
