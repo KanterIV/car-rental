@@ -1,11 +1,23 @@
 import { createAsyncThunk, createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { requestAllCars } from "../../services/api/api";
+import { requestCars, requestMoreCars } from "../../services/api/api";
 
-export const getAllRentalCars = createAsyncThunk(
-  "cars/getAll",
+export const getRentalCars = createAsyncThunk(
+  "cars/getCars",
   async (_, thunkApi) => {
     try {
-      const carsArray = await requestAllCars();
+      const carsArray = await requestCars();
+      return carsArray;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getMoreRentalCars = createAsyncThunk(
+  "cars/getMoreCars",
+  async (page, thunkApi) => {
+    try {
+      const carsArray = await requestMoreCars(page);
       return carsArray;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -15,6 +27,10 @@ export const getAllRentalCars = createAsyncThunk(
 
 const INITIAL_STATE = {
   carsArray: [],
+  pagination: {
+    page: 1,
+    limit: 12,
+  },
   isLoading: false,
   error: null,
 };
@@ -23,21 +39,39 @@ const carsSlice = createSlice({
   name: "cars",
   initialState: INITIAL_STATE,
 
+  reducers: {
+    setPage(state) {
+      state.pagination.page = state.pagination.page += 1;
+    },
+  },
+
   extraReducers: (builder) =>
     builder
-
-      .addCase(getAllRentalCars.fulfilled, (state, action) => {
+      .addCase(getRentalCars.fulfilled, (state, action) => {
         state.isLoading = false;
         state.carsArray = action.payload;
       })
 
-      .addMatcher(isAnyOf(getAllRentalCars.pending), (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addMatcher(isAnyOf(getAllRentalCars.rejected), (state) => {
+      .addCase(getMoreRentalCars.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.error = null;
-      }),
+        state.carsArray = [...state.carsArray, ...action.payload];
+      })
+
+      .addMatcher(
+        isAnyOf(getRentalCars.pending, getMoreRentalCars.pending),
+        (state) => {
+          state.isLoading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        isAnyOf(getRentalCars.rejected, getMoreRentalCars.rejected),
+        (state) => {
+          state.isLoading = false;
+          state.error = null;
+        }
+      ),
 });
+
+export const { setPage } = carsSlice.actions;
 export const carsReducer = carsSlice.reducer;

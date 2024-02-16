@@ -16,7 +16,7 @@ import { carsReducer } from "../redux/cars/carsReducer";
 const carsConfig = {
   key: "cars",
   storage,
-  whitelist: ["carsArray"],
+  whitelist: ["favorites"],
 };
 
 export const store = configureStore({

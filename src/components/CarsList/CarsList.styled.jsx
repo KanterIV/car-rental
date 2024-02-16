@@ -5,4 +5,6 @@ export const StyledCarsList = styled.ul`
   flex-wrap: wrap;
   column-gap: 29px;
   row-gap: 50px;
+
+  margin-bottom: 100px;
 `;

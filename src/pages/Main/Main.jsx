@@ -1,16 +1,22 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getAllRentalCars } from "../../redux/cars/carsReducer";
+import { getRentalCars } from "../../redux/cars/carsReducer";
 import CarsList from "../../components/CarsList/CarsList";
+import LoadMoreBtn from "../../components/LoadMore/LoadMore";
 
 const Main = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllRentalCars());
+    dispatch(getRentalCars());
   }, [dispatch]);
 
-  return <CarsList />;
+  return (
+    <>
+      <CarsList />
+      <LoadMoreBtn />
+    </>
+  );
 };
 
 export default Main;

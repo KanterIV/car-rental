@@ -19,5 +19,6 @@ export const StyledAppContainer = styled.div`
     width: 1214px;
     padding-left: 15px;
     padding-right: 15px;
+    padding-bottom: 150px;
   }
 `;
