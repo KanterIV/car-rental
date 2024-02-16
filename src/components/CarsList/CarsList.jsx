@@ -1,11 +1,7 @@
-import { useSelector } from "react-redux";
-import { selectCars } from "../../redux/cars/carsSelectors";
 import CarsListItem from "../CarsListItem/CarsListItem";
 import { StyledCarsList } from "./CarsList.styled";
 
-const CarsList = () => {
-  const carsArray = useSelector(selectCars);
-
+const CarsList = ({ carsArray }) => {
   return (
     <StyledCarsList>
       {carsArray.length !== 0 &&
@@ -25,15 +21,15 @@ const CarsList = () => {
           return (
             <CarsListItem
               key={id}
-              carId={id}
-              carImg={img}
-              carMake={make}
-              carModel={model}
-              carYear={year}
-              carRentalPrice={rentalPrice}
-              carAdress={address}
-              carRentalCompany={rentalCompany}
-              carType={type}
+              id={id}
+              img={img}
+              make={make}
+              model={model}
+              year={year}
+              rentalPrice={rentalPrice}
+              address={address}
+              rentalCompany={rentalCompany}
+              type={type}
             />
           );
         })}

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { StyledLoadMore } from "./LoadMore.styled";
-import { getMoreRentalCars } from "../../redux/cars/carsReducer";
+import { getMoreRentalCars } from "../../redux/cars/carsSlice";
 import { selectTotalCars } from "../../redux/cars/carsSelectors";
 
 const LoadMoreBtn = () => {

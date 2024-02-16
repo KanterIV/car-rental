@@ -8,6 +8,10 @@ export const StyledCarsListItem = styled.li`
   flex-direction: column;
   justify-content: space-between;
 
+  .content-wrapper {
+    position: relative;
+  }
+
   .cars-img {
     margin-bottom: 14px;
     border-radius: 14px;
@@ -62,6 +66,33 @@ export const StyledCarsListItem = styled.li`
 
     &:active {
       box-shadow: none;
+    }
+  }
+
+  .icon-heart-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+
+    border: none;
+    background-color: transparent;
+
+    & svg {
+      path {
+        transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        stroke: rgba(255, 255, 255, 0.8);
+      }
+      width: 18px;
+      height: 18px;
+    }
+
+    &.isFavorite {
+      & svg {
+        path {
+          stroke: #3470ff;
+          fill: #3470ff;
+        }
+      }
     }
   }
 `;

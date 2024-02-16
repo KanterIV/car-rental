@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledHeader = styled.header`
   padding: 20px 40px;
+  margin-bottom: 20px;
 
   .header-list {
     display: flex;

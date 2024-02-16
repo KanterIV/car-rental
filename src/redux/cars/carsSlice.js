@@ -53,12 +53,6 @@ const carsSlice = createSlice({
   name: "cars",
   initialState: INITIAL_STATE,
 
-  reducers: {
-    setPage(state) {
-      state.pagination.page = state.pagination.page += 1;
-    },
-  },
-
   extraReducers: (builder) =>
     builder
       .addCase(getTotalCars.fulfilled, (state, action) => {
@@ -100,5 +94,4 @@ const carsSlice = createSlice({
       ),
 });
 
-export const { setPage } = carsSlice.actions;
 export const carsReducer = carsSlice.reducer;
