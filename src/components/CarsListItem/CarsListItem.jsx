@@ -13,6 +13,7 @@ import {
   addFavoriteCar,
   removeFavoriteCar,
 } from "../../redux/favorite/favoriteSlice";
+import Button from "../Button/Button";
 
 const CarsListItem = ({
   id,
@@ -93,9 +94,7 @@ const CarsListItem = ({
         </button>
       </div>
 
-      <button className="car-btn" type="button">
-        Learn more
-      </button>
+      <Button>Learn more</Button>
     </StyledCarsListItem>
   );
 };

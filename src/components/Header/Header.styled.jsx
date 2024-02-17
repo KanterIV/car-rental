@@ -1,30 +1,32 @@
 import styled from "styled-components";
 
 export const StyledHeader = styled.header`
-  padding: 20px 40px;
-  margin-bottom: 20px;
+  padding: 16px 0;
+  background-color: #3470ff;
 
   .header-list {
     display: flex;
     justify-content: center;
+    gap: 40px;
   }
 
   .header-link {
     color: black;
-    border: 1px solid black;
     display: inline-block;
-    padding: 15px;
+    padding: 5px 15px;
     font-size: 18px;
     text-decoration: none;
-    margin-right: 20px;
     border-radius: 10px;
 
-    transition: all 0.3s;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      color: #0b44cd;
+    }
 
     &.active {
-      border: 1px solid white;
-      background-color: #3470ff;
-      color: white;
+      background-color: #fff;
+      color: #000;
       border-radius: 10px;
     }
   }

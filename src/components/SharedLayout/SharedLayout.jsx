@@ -4,12 +4,14 @@ import { StyledAppContainer } from "./SharedLayout.styled";
 
 const SharedLayout = () => {
   return (
-    <StyledAppContainer>
+    <>
       <Header />
       <main>
-        <Outlet />
+        <StyledAppContainer className="container">
+          <Outlet />
+        </StyledAppContainer>
       </main>
-    </StyledAppContainer>
+    </>
   );
 };
 

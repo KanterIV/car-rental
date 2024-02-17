@@ -133,3 +133,11 @@ img {
 .link {
   text-decoration: none;
 }
+
+.background-visible {
+  background-image: url("./assets/images/back3ground.jpg");
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
