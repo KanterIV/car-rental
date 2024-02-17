@@ -28,3 +28,8 @@ export const requestMoreCars = async (currentPage) => {
   const { data } = await carsInstances.get("/adverts");
   return data;
 };
+
+export const requestCarById = async (id) => {
+  const { data } = await carsInstances.get(`/adverts/${id}`);
+  return data;
+};

@@ -5,7 +5,7 @@ import {
 } from "../../services/stringSplit";
 import Line from "../Line/Line";
 import { StyledCarsListItem } from "./CarsListItem.styled";
-import { ReactComponent as IconHeart } from "../../assets/images/heart.svg";
+import { ReactComponent as IconHeart } from "../../assets/icons/heart.svg";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectFavoriteCars } from "../../redux/favorite/favoriteSelectors";
@@ -13,6 +13,7 @@ import {
   addFavoriteCar,
   removeFavoriteCar,
 } from "../../redux/favorite/favoriteSlice";
+import { getCarById, openModal } from "../../redux/cars/carsSlice";
 import Button from "../Button/Button";
 
 const CarsListItem = ({
@@ -61,6 +62,11 @@ const CarsListItem = ({
     }
   };
 
+  const onLearMoreClick = async () => {
+    await dispatch(getCarById(id));
+    dispatch(openModal());
+  };
+
   return (
     <StyledCarsListItem>
       <div className="content-wrapper">
@@ -94,7 +100,9 @@ const CarsListItem = ({
         </button>
       </div>
 
-      <Button>Learn more</Button>
+      <Button id={id} onBtnClick={onLearMoreClick}>
+        Learn more
+      </Button>
     </StyledCarsListItem>
   );
 };

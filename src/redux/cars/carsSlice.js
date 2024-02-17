@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
   requestAllCars,
+  requestCarById,
   requestCars,
   requestMoreCars,
 } from "../../services/api/api";
@@ -42,9 +43,23 @@ export const getMoreRentalCars = createAsyncThunk(
   }
 );
 
+export const getCarById = createAsyncThunk(
+  "cars/getCarInfo",
+  async (id, thunkApi) => {
+    try {
+      const car = await requestCarById(id);
+      return car;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
 const INITIAL_STATE = {
   carsArray: [],
   carsTotal: null,
+  carDetails: null,
+  isModalOpen: false,
   isLoading: false,
   error: null,
 };
@@ -52,6 +67,16 @@ const INITIAL_STATE = {
 const carsSlice = createSlice({
   name: "cars",
   initialState: INITIAL_STATE,
+
+  reducers: {
+    openModal(state) {
+      state.isModalOpen = true;
+    },
+
+    closeModal(state) {
+      state.isModalOpen = false;
+    },
+  },
 
   extraReducers: (builder) =>
     builder
@@ -70,11 +95,17 @@ const carsSlice = createSlice({
         state.carsArray = [...state.carsArray, ...action.payload];
       })
 
+      .addCase(getCarById.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.carDetails = action.payload;
+      })
+
       .addMatcher(
         isAnyOf(
           getTotalCars.pending,
           getRentalCars.pending,
-          getMoreRentalCars.pending
+          getMoreRentalCars.pending,
+          getCarById.pending
         ),
         (state) => {
           state.isLoading = true;
@@ -85,7 +116,8 @@ const carsSlice = createSlice({
         isAnyOf(
           getTotalCars.rejected,
           getRentalCars.rejected,
-          getMoreRentalCars.rejected
+          getMoreRentalCars.rejected,
+          getCarById.rejected
         ),
         (state) => {
           state.isLoading = false;
@@ -93,5 +125,5 @@ const carsSlice = createSlice({
         }
       ),
 });
-
+export const { openModal, closeModal } = carsSlice.actions;
 export const carsReducer = carsSlice.reducer;
