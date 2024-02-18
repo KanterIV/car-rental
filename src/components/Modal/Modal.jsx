@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StyledModalBackdrop } from "./Modal.styled";
-import Button from "../Button/Button";
 import { closeModal } from "../../redux/cars/carsSlice";
 import { selectCarDetails } from "../../redux/cars/carsSelectors";
 import {
@@ -39,6 +38,7 @@ const Modal = () => {
   const correctType = firstLetterUpCase(type);
   const { maxAge, validDrive, security } = chunkConditions(rentalConditions);
   const { title, age } = chunkMaxAge(maxAge);
+  const currentMilage = new Intl.NumberFormat("en-US").format(mileage);
 
   const handleOverlayClick = (event) => {
     if (event.target === event.currentTarget) {
@@ -112,34 +112,30 @@ const Modal = () => {
           })}
         </div>
 
-        <h4 className="subtitle">Rental Conditions: </h4>
+        <h4 className="subtitle renta-subtitle">Rental Conditions: </h4>
 
-        <div>
-          <span>
+        <div className="conditiond-wrapper">
+          <span className="condition condition-font">
             {`${title}: `}
-            <span>{age}</span>
+            <span className="title-blue title-bold">{age}</span>
           </span>
-          <span>{validDrive}</span>
+          <span className="condition">{validDrive}</span>
         </div>
 
-        <div>
-          <span>{security}</span>
-          <span>
+        <div className="conditiond-wrapper">
+          <span className="condition">{security}</span>
+          <span className="condition condition-font">
             Mileage:
-            <span>{new Intl.NumberFormat("en-US").format(mileage)}</span>
+            <span className="title-blue title-bold">{` ${currentMilage}`}</span>
           </span>
-          <span>
-            Price: <span>{rentalPrice}$</span>
+          <span className="condition">
+            Price: <span className="title-blue title-bold">{rentalPrice}</span>
           </span>
         </div>
 
-        <Button
-          onBtnClick={() => {
-            return;
-          }}
-        >
+        <a className="modal-btn" href="tel:+380730000000">
           Rental car
-        </Button>
+        </a>
       </div>
     </StyledModalBackdrop>
   );

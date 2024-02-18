@@ -72,4 +72,92 @@ export const StyledModalBackdrop = styled.div`
   .title-blue {
     color: #3470ff;
   }
+
+  .car-info-wrapper {
+    margin-bottom: 14px;
+  }
+  .car-info {
+    display: inline;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #12141780;
+
+    &:not(:last-child) {
+      padding-right: 6px;
+      border-right: 1px solid grey;
+    }
+    &:not(:first-child) {
+      padding-left: 6px;
+    }
+  }
+
+  .description {
+    margin-bottom: 24px;
+    color: #121417;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .subtitle {
+    margin-bottom: 8px;
+    color: #121417;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .acces-funtional {
+    margin-bottom: 24px;
+  }
+
+  .renta-subtitle {
+    margin-bottom: 15px;
+  }
+
+  .conditiond-wrapper {
+    display: flex;
+    gap: 8px;
+  }
+  .condition {
+    display: block;
+    padding: 7px 14px 7px 14px;
+
+    color: #363535;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    border-radius: 35px;
+    background: rgb(249, 249, 249);
+  }
+
+  .condition-font {
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .title-bold {
+    font-weight: 600;
+  }
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+    width: 168px;
+    height: 44px;
+    border: none;
+    border-radius: 12px;
+
+    color: #fff;
+    background-color: #3470ff;
+    box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover,
+    &:focus {
+      background-color: #0b44cd;
+      box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+    }
+  }
 `;
