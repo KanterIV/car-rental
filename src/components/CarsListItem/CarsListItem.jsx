@@ -72,8 +72,9 @@ const CarsListItem = ({
         <img src={img} className="cars-img" alt={`${make} ${model}`} />
         <div className="title-wrapper">
           <h3 className="cars-title">
-            {`${make} `} <span className="titile-blue"> {model}</span>{" "}
-            {`${year}`}
+            {`${make} `}
+            <span className="titile-blue">{model}</span>
+            {`, ${year}`}
           </h3>
           <p className="car-price">{rentalPrice}</p>
         </div>

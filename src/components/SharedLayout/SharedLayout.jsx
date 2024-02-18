@@ -3,10 +3,15 @@ import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { StyledAppContainer } from "./SharedLayout.styled";
 import Modal from "../Modal/Modal";
-import { selectModalState } from "../../redux/cars/carsSelectors";
+import {
+  selectIsLoading,
+  selectModalState,
+} from "../../redux/cars/carsSelectors";
+import Loader from "../Loader/Loader";
 
 const SharedLayout = () => {
   const isModalOpen = useSelector(selectModalState);
+  const isLoading = useSelector(selectIsLoading);
 
   return (
     <>
@@ -16,6 +21,7 @@ const SharedLayout = () => {
           <Outlet />
         </StyledAppContainer>
         {isModalOpen && <Modal />}
+        {isLoading && <Loader />}
       </main>
     </>
   );
