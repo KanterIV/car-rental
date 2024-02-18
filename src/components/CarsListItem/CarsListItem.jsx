@@ -3,7 +3,6 @@ import {
   chunkAddressCountry,
   firstLetterUpCase,
 } from "../../services/stringSplit";
-import Line from "../Line/Line";
 import { StyledCarsListItem } from "./CarsListItem.styled";
 import { ReactComponent as IconHeart } from "../../assets/icons/heart.svg";
 import { useEffect, useState } from "react";
@@ -72,22 +71,19 @@ const CarsListItem = ({
       <div className="content-wrapper">
         <img src={img} className="cars-img" alt={`${make} ${model}`} />
         <div className="title-wrapper">
-          <h3 className="cars-title">{`${make} ${model}, ${year}`}</h3>
+          <h3 className="cars-title">
+            {`${make} `} <span className="titile-blue"> {model}</span>{" "}
+            {`${year}`}
+          </h3>
           <p className="car-price">{rentalPrice}</p>
         </div>
         <div className="description">
-          {carCity}
-          <Line />
-          {carCountry}
-          <Line />
-          {rentalCompany}
-          <Line />
-          {correctType}
-          <Line />
-          {make}
-          <Line />
-          {id}
-          <Line />
+          <span className="details">{carCity}</span>
+          <span className="details">{carCountry}</span>
+          <span className="details">{rentalCompany}</span>
+          <span className="details">{correctType}</span>
+          <span className="details">{make}</span>
+          <span className="details">{id}</span>
         </div>
         <button
           className={

@@ -85,6 +85,7 @@ export const StyledModalBackdrop = styled.div`
     &:not(:last-child) {
       padding-right: 6px;
       border-right: 1px solid grey;
+      border-color: #1214171a;
     }
     &:not(:first-child) {
       padding-left: 6px;

@@ -31,6 +31,10 @@ export const StyledCarsListItem = styled.li`
     margin-right: auto;
   }
 
+  .titile-blue {
+    color: #3470ff;
+  }
+
   .car-price {
     font-size: 16px;
     font-weight: 500;
@@ -43,6 +47,22 @@ export const StyledCarsListItem = styled.li`
     font-size: 12px;
     line-height: 1.5;
     margin-bottom: auto;
+  }
+
+  .details {
+    display: inline;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #12141780;
+
+    &:not(:last-child) {
+      padding-right: 6px;
+      border-right: 1px solid grey;
+      border-color: #1214171a;
+    }
+    &:not(:first-child) {
+      padding-left: 6px;
+    }
   }
 
   .icon-heart-btn {
