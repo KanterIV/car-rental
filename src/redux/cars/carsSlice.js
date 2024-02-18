@@ -62,6 +62,9 @@ const INITIAL_STATE = {
   isModalOpen: false,
   isLoading: false,
   error: null,
+  filter: {
+    filterValue: "All",
+  },
 };
 
 const carsSlice = createSlice({
@@ -75,6 +78,10 @@ const carsSlice = createSlice({
 
     closeModal(state) {
       state.isModalOpen = false;
+    },
+
+    setFilterValue(state, action) {
+      state.filter.filterValue = action.payload;
     },
   },
 
@@ -125,5 +132,5 @@ const carsSlice = createSlice({
         }
       ),
 });
-export const { openModal, closeModal } = carsSlice.actions;
+export const { openModal, closeModal, setFilterValue } = carsSlice.actions;
 export const carsReducer = carsSlice.reducer;
