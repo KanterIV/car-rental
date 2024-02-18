@@ -8,7 +8,6 @@ const CarsList = ({ carsArray }) => {
         carsArray.map((car) => {
           const {
             id,
-            img,
             make,
             model,
             year,
@@ -17,6 +16,8 @@ const CarsList = ({ carsArray }) => {
             rentalCompany,
             type,
           } = car;
+
+          const img = car.img || car.photoLink;
 
           return (
             <CarsListItem
