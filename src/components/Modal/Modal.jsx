@@ -54,11 +54,13 @@ const Modal = () => {
     };
 
     document.body.style.overflowY = "hidden";
+    document.body.style.paddingRight = "8px";
     window.addEventListener("keydown", handleEscapeClick);
 
     return () => {
       window.removeEventListener("keydown", handleEscapeClick);
       document.body.style.overflowY = "visible";
+      document.body.style.paddingRight = "0px";
     };
   }, [dispatch]);
 

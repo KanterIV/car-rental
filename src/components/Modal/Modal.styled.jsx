@@ -26,6 +26,11 @@ export const StyledModalBackdrop = styled.div`
       width: 541px;
       padding: 40px;
     }
+
+    &::-webkit-scrollbar-track {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
   }
 
   .close-btn {
