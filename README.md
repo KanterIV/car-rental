@@ -26,10 +26,6 @@ I use the Mockapi service to create a backend with listings for car rentals: [Mo
 The design of the application is available at the following link: [Figma](https://www.figma.com/file/XhC8FSCfAkraEF5l7Hx4fL/Test?type=design&node-id=0-1&mode=design&t=zjesZfSJZEmOJYae-0)
 
 
-==                                                                                      ==
-==========================================================================================
-==                                                                                      ==
-
 
 # Car Rental [UA]
 
